@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Base Daily Streak</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #F8FAFC;
+      }
+      .base-blue-bg { background-color: #0052FF; }
+      .base-blue-text { color: #0052FF; }
+      .base-blue-border { border-color: #0052FF; }
+      
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Subtle entrance for reward cards */
+      @keyframes cardPop {
+        0% { transform: scale(0.95); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+
+      .animate-card-pop {
+        animation: cardPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+
+      /* Glow effect for unlocked items */
+      @keyframes subtleGlow {
+        0% { box-shadow: 0 0 5px rgba(0, 82, 255, 0.1); }
+        50% { box-shadow: 0 0 20px rgba(0, 82, 255, 0.2); }
+        100% { box-shadow: 0 0 5px rgba(0, 82, 255, 0.1); }
+      }
+
+      .unlocked-glow {
+        animation: subtleGlow 3s ease-in-out infinite;
+      }
+
+      /* Staggered delay classes */
+      .delay-100 { animation-delay: 100ms; }
+      .delay-200 { animation-delay: 200ms; }
+      .delay-300 { animation-delay: 300ms; }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react/": "https://esm.sh/react@19.0.0/",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
+    "@tanstack/react-query": "https://esm.sh/@tanstack/react-query@5.66.0?deps=react@19.0.0",
+    "viem": "https://esm.sh/viem@2.23.5",
+    "wagmi": "https://esm.sh/wagmi@2.14.11?deps=react@19.0.0,react-dom@19.0.0,@tanstack/react-query@5.66.0,viem@2.23.5",
+    "wagmi/chains": "https://esm.sh/wagmi@2.14.11/chains?deps=react@19.0.0,react-dom@19.0.0,viem@2.23.5",
+    "@coinbase/onchainkit": "https://esm.sh/@coinbase/onchainkit@0.36.1?deps=react@19.0.0,react-dom@19.0.0,wagmi@2.14.11,viem@2.23.5",
+    "@coinbase/onchainkit/wallet": "https://esm.sh/@coinbase/onchainkit@0.36.1/wallet?deps=react@19.0.0,react-dom@19.0.0,wagmi@2.14.11,viem@2.23.5",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "wagmi/": "https://esm.sh/wagmi@^3.4.3/",
+    "@coinbase/onchainkit/": "https://esm.sh/@coinbase/onchainkit@^1.1.2/"
+  }
+}
+</script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

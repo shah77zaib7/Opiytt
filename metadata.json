@@ -1,0 +1,5 @@
+{
+  "name": "Base Daily Streak",
+  "description": "A gamified dApp for Base Mainnet where users can mint daily badges and maintain streaks to earn legendary rewards.",
+  "requestFramePermissions": []
+}
