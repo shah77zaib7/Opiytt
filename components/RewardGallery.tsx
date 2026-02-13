@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { MILESTONES } from '../constants';
 
 interface RewardGalleryProps {
@@ -7,6 +7,12 @@ interface RewardGalleryProps {
 }
 
 const RewardGallery: React.FC<RewardGalleryProps> = ({ currentStreak }) => {
+  // Count how many milestones are unlocked to use as a key for re-triggering animations
+  const unlockedCount = useMemo(() => 
+    MILESTONES.filter(m => currentStreak >= m.day).length, 
+    [currentStreak]
+  );
+
   return (
     <div className="w-full space-y-8">
       <div className="text-center animate-fade-in">
@@ -14,9 +20,18 @@ const RewardGallery: React.FC<RewardGalleryProps> = ({ currentStreak }) => {
         <p className="text-gray-500 text-sm">Track your path to legendary status</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* 
+        The key={unlockedCount} ensures the entire grid re-animates 
+        whenever a new milestone is unlocked.
+      */}
+      <div 
+        key={unlockedCount} 
+        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+      >
         {MILESTONES.map((milestone, index) => {
           const isUnlocked = currentStreak >= milestone.day;
+          const isJustUnlocked = currentStreak === milestone.day;
+          
           // Apply staggered animation delay
           const delayClass = index === 0 ? 'delay-100' : index === 1 ? 'delay-200' : 'delay-300';
           
@@ -25,7 +40,7 @@ const RewardGallery: React.FC<RewardGalleryProps> = ({ currentStreak }) => {
               key={milestone.day}
               className={`relative overflow-hidden rounded-3xl border-2 transition-all duration-700 p-6 flex flex-col items-center text-center space-y-4 shadow-sm animate-card-pop ${delayClass} ${
                 isUnlocked 
-                  ? 'bg-white border-[#0052FF] shadow-blue-100 unlocked-glow scale-100' 
+                  ? `bg-white border-[#0052FF] shadow-blue-100 unlocked-glow ${isJustUnlocked ? 'scale-105 ring-4 ring-blue-100' : 'scale-100'}` 
                   : 'bg-gray-50 border-gray-100 opacity-60 grayscale scale-[0.98]'
               }`}
             >
