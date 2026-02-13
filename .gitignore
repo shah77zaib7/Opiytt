@@ -22,3 +22,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ────────────────────────────────────────────────
+# Additions for Next.js / Vercel (do not remove these)
+
+# Next.js specific build artifacts (critical!)
+.next/
+out/
+
+# Local environment variables (more explicit)
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Optional but useful for many projects
+.vercel
+coverage/
